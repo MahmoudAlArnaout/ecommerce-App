@@ -18,7 +18,8 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   @override
   void dispose() {
@@ -174,7 +175,8 @@ class _SignupScreenState extends State<SignupScreen> {
                         color: Colors.white.withOpacity(0.5),
                         spreadRadius: 1,
                         blurRadius: 1,
-                        offset: const Offset(0, 1), // changes position of shadow
+                        offset:
+                            const Offset(0, 1), // changes position of shadow
                       ),
                     ],
                   ),
@@ -188,7 +190,8 @@ class _SignupScreenState extends State<SignupScreen> {
                           width: 30.0,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage('assets/images/login_signup/google.png'),
+                              image: AssetImage(
+                                  'assets/images/login_signup/google.png'),
                               fit: BoxFit.cover,
                             ),
                             shape: BoxShape.circle,
@@ -213,7 +216,8 @@ class _SignupScreenState extends State<SignupScreen> {
                     TextButton(
                       onPressed: () {
                         Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => LoginScreen()),
+                          MaterialPageRoute(
+                              builder: (context) => LoginScreen()),
                         );
                       },
                       child: const Text(
