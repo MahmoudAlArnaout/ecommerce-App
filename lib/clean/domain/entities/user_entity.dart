@@ -12,15 +12,4 @@ class UserEntity{
       username: map['username'] as String,
     );
   }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'email': email,
-      'password': password,
-      'username': username,
-    };
-  }
-
-
-
 }

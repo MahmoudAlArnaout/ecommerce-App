@@ -2,9 +2,9 @@ abstract class LoginEvents {}
 
 class LoginSubmitted extends LoginEvents {
   final String email;
-  final String passWord;
+  final String password;
 
-  LoginSubmitted({required this.email, required this.passWord});
+  LoginSubmitted({required this.email, required this.password});
 }
 
 class EmailSubmitted extends LoginEvents {
@@ -14,7 +14,7 @@ class EmailSubmitted extends LoginEvents {
 }
 
 class PassWordSubmitted extends LoginEvents {
-  final String passWord;
+  final String password;
 
-  PassWordSubmitted({required this.passWord});
+  PassWordSubmitted({required this.password});
 }

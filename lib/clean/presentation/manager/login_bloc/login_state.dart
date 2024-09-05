@@ -5,6 +5,8 @@ abstract class LoginState {
 class LoginInitial extends LoginState {
   const LoginInitial();
 }
+class LoginLoading extends LoginState {
+}
 
 class LoginSuccess extends LoginState {}
 

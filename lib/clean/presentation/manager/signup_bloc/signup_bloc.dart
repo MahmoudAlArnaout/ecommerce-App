@@ -1,13 +1,14 @@
 import 'package:ecommerce/basic_flutter/DataBaseConnection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../domain/use_case/creat_user.dart';
 import 'signup_event.dart';
 import 'signup_state.dart';
 
 class SignupBloc extends Bloc<SignupEvent, SignupState> {
-  final DatabaseConnection databaseConnection;
+  final CreateUser createUser;
 
-  SignupBloc(DatabaseConnection dbConnection)
-      : databaseConnection = dbConnection,
+  SignupBloc(CreateUser user)
+      : createUser = user,
         super(SignupInitial()) {
     on<SignupSubmitted>(_onSignupSubmitted);
   }
@@ -27,13 +28,13 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
         emit(SignupFailure(error: "no internet connection"));
       }
     } else {
-      emit(SignupFailure(error: "Passwords dont not match"));
+      emit(SignupFailure(error: "Passwords do not match"));
     }
   }
 
   Future<bool> _signupUser(
       String email, String password, String username) async {
-    if (await databaseConnection.insertUsers(email, password, username)) {
+    if (await createUser.addUser(email, password, username)) {
       return true;
     }
     return false;
