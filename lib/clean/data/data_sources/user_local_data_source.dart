@@ -42,7 +42,6 @@ class UserLocalDataSource {
 
   Future<bool> insertData(String sql) async {
     Database? dataBase = await database;
-
     await dataBase!.rawInsert(sql);
     return true;
   }

@@ -1,6 +1,6 @@
 import 'package:ecommerce/clean/domain/repositories/user_repositorie.dart';
 
-import '../../data/models/user.dart';
+import '../../data/models/user_model.dart';
 
 class GetUserByEmail {
   final UserRepositories repositories;

@@ -1,19 +1,22 @@
+import 'package:ecommerce/clean/domain/use_case/creat_user.dart';
+import 'package:ecommerce/clean/presentation/manager/signup_bloc/signup_bloc.dart';
+import 'package:ecommerce/clean/presentation/manager/signup_bloc/signup_event.dart';
+import 'package:ecommerce/clean/presentation/manager/signup_bloc/signup_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ecommerce/basic_flutter/DataBaseConnection.dart';
-import '../signup_bloc/signup_bloc.dart';
-import '../signup_bloc/signup_event.dart';
-import '../signup_bloc/signup_state.dart';
-import 'login_screen.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key});
+import '../../domain/repositories/user_repositorie.dart';
+import 'login_screen_clean.dart';
+
+class SignupScreenClean extends StatefulWidget {
+  const SignupScreenClean({super.key});
 
   @override
   _SignupScreenState createState() => _SignupScreenState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
+class _SignupScreenState extends State<SignupScreenClean> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -32,8 +35,22 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SignupBloc(DatabaseConnection()),
+      create: (context) => SignupBloc(
+          CreateUser(repositories: context.read<UserRepositories>())),
       child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            "Sigbup",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back),
+          ),
+        ),
         body: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -126,7 +143,8 @@ class _SignupScreenState extends State<SignupScreen> {
                     if (state is SignupSuccess) {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => LoginScreenClean()),
                       );
                     } else if (state is SignupFailure) {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -190,7 +208,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           decoration: const BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage(
-                                  'assets/images/login_signup/google.png'),
+                                  'images/img.png'),
                               fit: BoxFit.cover,
                             ),
                             shape: BoxShape.circle,
@@ -216,7 +234,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                              builder: (context) => LoginScreen()),
+                              builder: (context) => LoginScreenClean()),
                         );
                       },
                       child: const Text(
