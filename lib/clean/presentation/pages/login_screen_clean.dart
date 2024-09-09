@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:ecommerce/blocs/models/user.dart';
 import 'package:ecommerce/clean/domain/repositories/user_repositorie.dart';
 import 'package:ecommerce/clean/domain/use_case/get_user_by_email.dart';
+import 'package:ecommerce/clean/presentation/pages/home_screen_clean.dart';
 import 'package:ecommerce/clean/presentation/pages/signup_screen_clean.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -127,6 +128,7 @@ class LoginScreenClean extends StatelessWidget {
                   if (state is LoginSuccess) {
                     Navigator.pushReplacement(
                       context,
+                      MaterialPageRoute(builder: (context) => HomeScreenClean()),
                     );
                   } else if (state is LoginFailure) {
                     ScaffoldMessenger.of(context).showSnackBar(
